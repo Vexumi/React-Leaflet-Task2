@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, ScaleControl } from 'react-leaflet';
+import DatePickerComponent from './components/DatePicker';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const position = [51.505, -0.09];
+  const mapUrl = 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png';
+
+  return(
+    <>
+      <DatePickerComponent/>
+      <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <ScaleControl position='bottomleft'/>
+        <TileLayer url={mapUrl} />
+      </MapContainer>
+    </>
+  )
 }
 
 export default App;
